@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import cls from './SearchChart.module.scss';
-import Search from "shared/icons/Search/Search";
+import Search from "shared/assets/icons/Search/Search";
 import {classNames} from "shared/lib/classNames/classNames";
 
 export const SearchChart = () => {

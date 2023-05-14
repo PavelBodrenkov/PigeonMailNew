@@ -3,6 +3,10 @@
 @import "themes/dark";
 @import "themes/normal";
 
+::-webkit-scrollbar {
+    width: 7px;
+}
+
 .app {
     font: var(--font-m);
     background: var(--bg-color);
@@ -18,4 +22,9 @@
 .page-wrapper {
     flex-grow: 1;
     padding: 20px;
+    width: 100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+
+    //height: 100%;
 }

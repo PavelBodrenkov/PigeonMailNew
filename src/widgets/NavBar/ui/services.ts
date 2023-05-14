@@ -1,7 +1,7 @@
-import Chat from "shared/icons/Chat/Chat";
-import Settings from "shared/icons/Settings/Settings";
-import Help from "shared/icons/Help/Help";
-import Profile from "shared/icons/Profile/Profile";
+import Chat from "shared/assets/icons/Chat/Chat";
+import Settings from "shared/assets/icons/Settings/Settings";
+import Help from "shared/assets/icons/Help/Help";
+import Profile from "shared/assets/icons/Profile/Profile";
 
 export enum tabKey {
     CHAT = 'chat',
