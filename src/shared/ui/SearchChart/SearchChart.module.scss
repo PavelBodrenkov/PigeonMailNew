@@ -1,0 +1,23 @@
+.SearchChart {
+  padding: 10px;
+
+  .wrapper_input {
+    background-color: #bfbfbf;
+    padding: 7px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #bfbfbf;
+    & input {
+      width: 100%;
+      background-color: #bfbfbf;
+      border: none;
+      outline: none;
+    }
+  }
+
+  .focus_input {
+    border: 2px solid #722ed1;
+  }
+}
