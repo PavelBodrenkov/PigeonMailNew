@@ -7,8 +7,12 @@
     --font-line-l: 32px;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
+
     /*Размеры*/
-    --navbar-height: 100vh;
-    --sidebar-width: 300px;
-    --sidebar-width-collapsed: 80px;
+    --chat-height:63px;
+    --right-column-width:25vw;
+    --messages-container-width: 45.5rem;
+    //--navbar-height: 100vh;
+    //--sidebar-width: 300px;
+    //--sidebar-width-collapsed: 80px;
 }

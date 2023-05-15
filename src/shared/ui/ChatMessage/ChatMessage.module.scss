@@ -1,0 +1,26 @@
+.ChatMessage {
+  background-color: #9254de;
+  border-radius: 10px;
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .wrapper {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+
+  }
+
+  .time_wrapper {
+    display: flex;
+    align-items: flex-end;
+    .time {
+      font-size: 10px;
+    }
+  }
+}
+
+.isMeBg {
+  background-color: var(--bg-color);
+}

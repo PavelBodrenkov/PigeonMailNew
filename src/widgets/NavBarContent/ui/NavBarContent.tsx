@@ -3,7 +3,7 @@ import cls from './NavBarContent.module.scss';
 import {Settings} from "widgets/Settings";
 import {useAppSelector} from "shared/lib/redux/redux";
 import {tabKey} from "widgets/NavBar/ui/services";
-import {Chart} from "widgets/Chart";
+import {Dialogs} from "widgets/Dialogs";
 
 export const NavBarContent = () => {
 
@@ -15,7 +15,7 @@ export const NavBarContent = () => {
                 return <Settings/>
             }
             case tabKey.CHAT: {
-                return <Chart />
+                return <Dialogs />
             }
             default: {
                 return <>test</>

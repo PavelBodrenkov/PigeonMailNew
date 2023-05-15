@@ -5,7 +5,6 @@ import { PageLoader } from 'widgets/PageLoader';
 import BG from "shared/assets/img/background-chat-vk-75.jpg";
 
 const AppRouter = () => (
-
     <Routes>
         {Object.values(routeConfig).map(({ path, element }) => (
             <Route
@@ -21,7 +20,6 @@ const AppRouter = () => (
             />
         ))}
     </Routes>
-
 );
 
 export default AppRouter;

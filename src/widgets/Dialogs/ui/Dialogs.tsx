@@ -1,13 +1,12 @@
 import React from 'react';
-import cls from './Chart.module.scss';
 import {SearchChart} from "shared/ui/SearchChart/SearchChart";
-import {ChartList} from "widgets/ChartList";
+import {DialogList} from "widgets/DialogList";
 
-export const Chart = () => {
+export const Dialogs = () => {
     return (
         <div>
             <SearchChart />
-            <ChartList />
+            <DialogList />
         </div>
     );
 };

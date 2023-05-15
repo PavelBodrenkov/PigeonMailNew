@@ -1,0 +1,32 @@
+.ChatInput {
+  width: calc(100% - var(--right-column-width));
+  max-width: var(--messages-container-width);
+  padding: 0 1rem;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  z-index: var(--z-middle-footer);
+  transform: translate3d(0, 0, 0);
+  transition: top 200ms, transform var(--layer-transition);
+
+  .content {
+    width: 100%;
+    display: flex;
+    position: relative;
+
+    .wrapper {
+      flex-grow: 1;
+      padding: 10px;
+      background-color: #bfbfbf;
+      border-radius: 10px;
+      & input {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+
+}
