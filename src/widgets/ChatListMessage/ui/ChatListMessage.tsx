@@ -30,6 +30,8 @@ export const ChatListMessage = () => {
 
     const bottomRef = useRef<any>()
 
+    console.log('messages', messages)
+
     useEffect(() => {
         bottomRef.current.scrollIntoView({
             behavior: 'smooth'
@@ -37,13 +39,16 @@ export const ChatListMessage = () => {
     }, [messages])
 
     const isMe = useCallback((sender:number) => {
-            return user.id === sender
-    }, [user])
+            return user?.id === sender
+    }, [user.id])
+
 
     return (
         <div className={cls.ChatListMessage}>
             <div className={cls.message_container}>
                 {messages?.map((item:any) => {
+                    console.log('isMe', isMe(item.sender))
+
                     return (
                         <div className={classNames(cls.message, {[cls.isMe]: isMe(item.sender)}, [])}>
                             <ChatMessage item={item}  isMe={isMe(item.sender)}/>

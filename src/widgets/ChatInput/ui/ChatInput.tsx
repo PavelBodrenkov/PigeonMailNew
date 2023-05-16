@@ -10,6 +10,8 @@ export const ChatInput = () => {
     const {currentDialog, partnerId} = useAppSelector(state => state.dialogs)
     const {sender, userid} = currentDialog
     const {sendMessage} = useChat(currentDialog, user, partnerId)
+    console.log('currentDialog', currentDialog)
+    console.log('partnerId', partnerId)
 
     const [message, setMessage] = useState<string>('')
 
@@ -21,11 +23,12 @@ export const ChatInput = () => {
         console.log('event', event.key)
         if(event.key === 'Enter') {
             const data = {
-                room:currentDialog,
+                conv_id:currentDialog?.convid,
                 message:message,
-                partner:user.id === sender ? userid : sender,
-                id:currentDialog.convid,
+                partner:user?.id === sender ? userid : sender,
+                id:user?.id,
             }
+            console.log('data', data)
             sendMessage(data)
         }
     }

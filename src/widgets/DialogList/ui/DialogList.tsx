@@ -35,6 +35,8 @@ export const DialogList = () => {
 
     const {dialogs} = useAppSelector(state => state.dialogs)
 
+    console.log('dialogs', dialogs)
+
     return (
         <div className={cls.ChartList}>
             {dialogs.map((item, index) => {

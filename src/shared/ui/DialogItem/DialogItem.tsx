@@ -29,7 +29,7 @@ export const DialogItem: FC<MessageItemProps> = (props) => {
 
     const handleClickDialog = (id: number) => {
         navigate(`/${id}`)
-        dispatch(dialogsActions.setCurrentDialog(id))
+        dispatch(dialogsActions.setCurrentDialog(props.item))
         dispatch(dialogsActions.setPartnerId(userid))
         localStorage.setItem('currentDialog', JSON.stringify(props.item))
         localStorage.setItem('parentId', `${userid}`)
