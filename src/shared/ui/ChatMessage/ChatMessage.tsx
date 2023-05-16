@@ -6,21 +6,26 @@ import {classNames} from "shared/lib/classNames/classNames";
 
 interface ChatMessageProps {
     item: {
-        isMe: boolean,
+        avatar: string | null
+        date: string
+        fullname: string
+        id: number
         message: string
-        read: boolean
-    }
+        readed: number
+        sender: number
+    },
+    isMe:boolean
 }
 
 export const ChatMessage: FC<ChatMessageProps> = (props) => {
-    const {isMe, message, read} = props.item
+    const {avatar, date, fullname, id, message, readed, sender} = props.item
     return (
-        <div className={classNames(cls.ChatMessage, {[cls.isMeBg]:isMe}, [])}>
+        <div className={classNames(cls.ChatMessage, {[cls.isMeBg]:props.isMe}, [])}>
             <div className={cls.wrapper}>
                 <div>{message}</div>
                 <div className={cls.time_wrapper}>
                     <div className={cls.time}>12.26</div>
-                    {!isMe && (read ? <Read height={20} width={15}/> : <NoRead height={20} width={15}/>)}
+                    {!props.isMe && (readed ? <Read height={20} width={15}/> : <NoRead height={20} width={15}/>)}
                 </div>
             </div>
         </div>

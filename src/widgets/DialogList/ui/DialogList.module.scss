@@ -48,4 +48,8 @@
     align-items: flex-end;
     gap: 2px;
   }
+
+  .active {
+    background-color: var(--hover-message);
+  }
 }

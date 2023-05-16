@@ -4,7 +4,7 @@ import {ChatHead} from "widgets/ChatHead";
 import {ChatInput} from "widgets/ChatInput";
 import {ChatListMessage} from "widgets/ChatListMessage";
 
-export const ChatPage = () => {
+const ChatPage = () => {
     return (
         <div className={cls.ChatPage}>
             <ChatHead/>
@@ -17,3 +17,5 @@ export const ChatPage = () => {
         </div>
     );
 };
+
+export default ChatPage

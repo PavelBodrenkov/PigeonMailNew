@@ -1,32 +1,59 @@
 import './styles/index.scss';
-import React, { Suspense } from 'react';
-import { Provider } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
-import { AppRouter } from 'app/providers/router';
-import {NavBar} from "widgets/NavBar";
-import {NavBarContent} from "widgets/NavBarContent";
-import {store} from "app/providers/StoreProvider";
+import React, {useEffect, useRef, useState} from 'react';
+import {classNames} from 'shared/lib/classNames/classNames';
+import {useTheme} from 'app/providers/ThemeProvider';
+import {AppRouter} from 'app/providers/router';
+import {useAppDispatch, useAppSelector} from "shared/lib/redux/redux";
+import {fetchCheckAuth} from "entities/RefreshTokenUser";
+import {io} from 'socket.io-client';
+import {useParams} from "react-router-dom";
+import {dialogsActions} from "entities/Dialogs";
+// import { socket } from '../shared/lib/socket/socket';
 
-// import { injectStore } from "../shared/lib/axios/axios";
-
-const rootStore = store()
-// injectStore(rootStore)
 
 const App = () => {
-    const { theme } = useTheme();
+    const {theme} = useTheme();
+    const dispatch = useAppDispatch()
+    const {currentDialog} = useAppSelector(state => state.dialogs)
+
+    const getDialogs = (userId: number, userName: string) => {
+        const socket = io('http://localhost:8080', {
+            query: {
+                // отправляем идентификатор комнаты и имя пользователя на сервер
+                roomId: currentDialog ?? 0,
+                userName: userName,
+                userId: userId
+            }
+        });
+
+        socket.emit('dialogs:get')
+        // обрабатываем получение обновленного списка сообщений
+        socket.on('dialogs_list:get', (dialogs) => {
+            dispatch(dialogsActions.setDialogs(dialogs))
+        })
+
+        if(localStorage.getItem('currentDialog')) {
+            const tmp = JSON.parse(localStorage.getItem('currentDialog'))
+            dispatch(dialogsActions.setCurrentDialog(tmp))
+        }
+        if(localStorage.getItem('parentId')) {
+            dispatch(dialogsActions.setPartnerId(Number(localStorage.getItem('parentId'))))
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            dispatch(fetchCheckAuth())
+                .unwrap()
+                .then((res) => {
+                    getDialogs(res.id, res.fullname)
+                })
+        }
+    }, [])
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Provider store={rootStore}>
-                <Suspense fallback="">
-                    <div className="content-page">
-                        <NavBar />
-                        <NavBarContent />
-                        <AppRouter />
-                    </div>
-                </Suspense>
-            </Provider>
+            <AppRouter/>
         </div>
     );
 };

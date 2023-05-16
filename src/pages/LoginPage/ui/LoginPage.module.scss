@@ -1,0 +1,65 @@
+.LoginPage {
+  background-color: #000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  .wrapper {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+    .wrapper_form_item {
+      position: relative;
+
+      .wrapper_input {
+        padding: 5px;
+        border: 1px solid #FFF;
+        border-radius: 5px;
+        background-color: #FFF;
+        .input {
+          border: 0;
+          background-color: transparent;
+          outline: none;
+        }
+
+      }
+
+      .error_text {
+        font-size: 10px;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+      }
+    }
+
+    .error {
+      color: red;
+    }
+
+    .errorInput {
+      border: 2px solid red !important;
+    }
+
+    .button {
+      margin-top: 20px;
+      border: 0;
+      padding: 10px;
+      border-radius: 10px;
+      color: #000;
+    }
+  }
+
+
+}

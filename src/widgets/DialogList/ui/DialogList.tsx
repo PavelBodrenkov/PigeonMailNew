@@ -1,11 +1,12 @@
 import React from 'react';
 import cls from './DialogList.module.scss';
 import {DialogItem} from "shared/ui/DialogItem/DialogItem";
+import {useAppSelector} from "shared/lib/redux/redux";
 
 
 const testArr = [
     {
-        id:1,
+        id: 1,
         avatar: 'P',
         name: 'Pavel',
         message: 'message',
@@ -13,7 +14,7 @@ const testArr = [
         read: true
     },
     {
-        id:2,
+        id: 2,
         avatar: 'A',
         name: 'Alina',
         message: 'message',
@@ -21,7 +22,7 @@ const testArr = [
         read: false
     },
     {
-        id:3,
+        id: 3,
         avatar: 'D',
         name: 'Dima',
         message: 'message',
@@ -31,9 +32,12 @@ const testArr = [
 ]
 
 export const DialogList = () => {
+
+    const {dialogs} = useAppSelector(state => state.dialogs)
+
     return (
         <div className={cls.ChartList}>
-            {testArr.map((item, index) => {
+            {dialogs.map((item, index) => {
                 return (
                     <DialogItem
                         item={item}
