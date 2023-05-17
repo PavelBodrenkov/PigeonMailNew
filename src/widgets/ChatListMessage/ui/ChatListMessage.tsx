@@ -26,11 +26,11 @@ export const ChatListMessage = () => {
     // const {id} = useParams()
     const {user} = useAppSelector(state => state.user)
     const {currentDialog, partnerId} = useAppSelector(state => state.dialogs)
-    const {users, messages, log, sendMessage} = useChat(currentDialog, user, partnerId)
+    const {users, messages, log, sendMessage} = useChat(currentDialog.convid, user, partnerId)
 
     const bottomRef = useRef<any>()
 
-    console.log('messages', messages)
+    console.log('currentDialog', currentDialog)
 
     useEffect(() => {
         bottomRef.current.scrollIntoView({

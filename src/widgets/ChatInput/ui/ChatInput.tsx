@@ -9,7 +9,7 @@ export const ChatInput = () => {
     const {user} = useAppSelector(state => state.user)
     const {currentDialog, partnerId} = useAppSelector(state => state.dialogs)
     const {sender, userid} = currentDialog
-    const {sendMessage} = useChat(currentDialog, user, partnerId)
+    const {sendMessage} = useChat(currentDialog.convid, user, partnerId)
     console.log('currentDialog', currentDialog)
     console.log('partnerId', partnerId)
 

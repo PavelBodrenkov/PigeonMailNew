@@ -2,6 +2,7 @@ import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
 import {io} from "socket.io-client";
 
 export default function useChat(roomId:any, user:any, partnerId:any) {
+    console.log('roomId', roomId)
 
     const [users, setUsers] = useState([])
     // локальное состояние для списка сообщений
