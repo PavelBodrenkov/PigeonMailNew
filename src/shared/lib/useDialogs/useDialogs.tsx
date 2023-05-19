@@ -25,15 +25,6 @@ export default function useDialogs(user:any) {
             setDialogs(dialogs)
             // dispatch(dialogsActions.setDialogs(dialogs))
         })
-
-        if(localStorage.getItem('currentDialog')) {
-            const tmp = JSON.parse(localStorage.getItem('currentDialog'))
-            dispatch(dialogsActions.setCurrentDialog(tmp))
-        }
-        if(localStorage.getItem('parentId')) {
-            dispatch(dialogsActions.setPartnerId(Number(localStorage.getItem('parentId'))))
-        }
-
     }, [user])
 
     const getDialogs = () => {
@@ -44,6 +35,7 @@ export default function useDialogs(user:any) {
         //     // dispatch(dialogsActions.setDialogs(dialogs))
         // })
     }
+    console.log('dialogs', dialogs)
 
     return {getDialogs, dialogs }
 }

@@ -34,6 +34,18 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    position: relative;
+  }
+
+  .isOnline {
+    content:'';
+    position:absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 10px;
   }
 
   .content {

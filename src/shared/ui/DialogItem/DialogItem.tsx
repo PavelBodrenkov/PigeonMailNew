@@ -13,7 +13,7 @@ interface MessageItemProps {
 }
 
 export const DialogItem: FC<MessageItemProps> = (props) => {
-    const {avatar, fullname, message, date, readed, convid, userid} = props.item
+    const {avatar, fullname, message, date, readed, convid, userid, is_online} = props.item
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -38,7 +38,10 @@ export const DialogItem: FC<MessageItemProps> = (props) => {
     return (
         <div className={classNames(cls.container, {[cls.active]: convid === currentDialog.convid}, [])}
              onClick={() => handleClickDialog(convid)}>
-            <div className={cls.avatar}>{renderAvatar(avatar, fullname)}</div>
+            <div className={cls.avatar}>
+                {renderAvatar(avatar, fullname)}
+                {is_online > 0 && <span className={cls.isOnline}/>}
+            </div>
             <div className={cls.content}>
                 <div className={cls.content__name}>{fullname}</div>
                 <div className={cls.content__message}>{message}</div>

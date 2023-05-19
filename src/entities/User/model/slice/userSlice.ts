@@ -4,16 +4,20 @@ import {initialStateType} from "entities/User/model/types/userTypes";
 
 const initialState: initialStateType = {
     user: {} as IUser,
+    isOnline: false,
     isLoadingUser: false,
     errorUser: ''
 }
 
 const userSlice = createSlice({
-    name: 'login',
+    name: 'user',
     initialState,
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload
+        },
+        setIsOnline:(state, action) => {
+            state.isOnline = action.payload
         }
     },
     // extraReducers(builder) {

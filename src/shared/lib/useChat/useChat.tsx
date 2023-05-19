@@ -4,6 +4,7 @@ import {dialogsActions} from "entities/Dialogs";
 import {useAppDispatch} from "shared/lib/redux/redux";
 
 export default function useChat(roomId:any, user:any, partnerId:any) {
+    console.log('roomId', roomId)
    const dispatch = useAppDispatch()
 
     const [users, setUsers] = useState([])
@@ -61,6 +62,6 @@ export default function useChat(roomId:any, user:any, partnerId:any) {
     const sendMessage = (message:any) => {
         socket.emit('message:add', message)
     }
-    
+
     return { users, messages, log, sendMessage }
 };
