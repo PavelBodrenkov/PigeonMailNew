@@ -3,6 +3,7 @@ import cls from './ChatInput.module.scss';
 import {classNames} from "shared/lib/classNames/classNames";
 import {useAppSelector} from "shared/lib/redux/redux";
 import useChat from "shared/lib/useChat/useChat";
+import useDialogs from "shared/lib/useDialogs/useDialogs";
 
 export const ChatInput = () => {
 
@@ -10,8 +11,7 @@ export const ChatInput = () => {
     const {currentDialog, partnerId} = useAppSelector(state => state.dialogs)
     const {sender, userid} = currentDialog
     const {sendMessage} = useChat(currentDialog.convid, user, partnerId)
-    console.log('currentDialog', currentDialog)
-    console.log('partnerId', partnerId)
+    const {getDialogs} = useDialogs(user)
 
     const [message, setMessage] = useState<string>('')
 
@@ -20,19 +20,23 @@ export const ChatInput = () => {
     }
 
     const onSubmit = (event:any) => {
-        console.log('event', event.key)
         if(event.key === 'Enter') {
             const data = {
+                avatar:'',
                 conv_id:currentDialog?.convid,
                 message:message,
                 partner:user?.id === sender ? userid : sender,
                 id:user?.id,
+                sender:user?.id,
+                readed:0,
+                fullname:user.fullname,
+                date:new Date()
             }
-            console.log('data', data)
             sendMessage(data)
+            setMessage('')
+            // getDialogs()
         }
     }
-
 
 
     return (
@@ -43,6 +47,7 @@ export const ChatInput = () => {
                         placeholder={'Введите сообщение...'}
                         onChange={(e) => onChange(e.target.value)}
                         onKeyPress={(e) => onSubmit(e)}
+                        value={message}
                     />
                 </div>
             </div>

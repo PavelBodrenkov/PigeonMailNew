@@ -8,6 +8,7 @@ import {fetchCheckAuth} from "entities/RefreshTokenUser";
 import {io} from 'socket.io-client';
 import {useParams} from "react-router-dom";
 import {dialogsActions} from "entities/Dialogs";
+import useChat from "shared/lib/useChat/useChat";
 // import { socket } from '../shared/lib/socket/socket';
 
 
@@ -15,6 +16,7 @@ const App = () => {
     const {theme} = useTheme();
     const dispatch = useAppDispatch()
     const {currentDialog} = useAppSelector(state => state.dialogs)
+    // const {sendMessage, getDialogs} = useChat(currentDialog.convid, user, partnerId)
 
     const getDialogs = (userId: number, userName: string) => {
         const socket = io('http://localhost:8080', {
@@ -26,19 +28,19 @@ const App = () => {
             }
         });
 
-        socket.emit('dialogs:get')
-        // обрабатываем получение обновленного списка сообщений
-        socket.on('dialogs_list:get', (dialogs) => {
-            dispatch(dialogsActions.setDialogs(dialogs))
-        })
+        // socket.emit('dialogs:get')
+        // // обрабатываем получение обновленного списка сообщений
+        // socket.on('dialogs_list:get', (dialogs) => {
+        //     dispatch(dialogsActions.setDialogs(dialogs))
+        // })
 
-        if(localStorage.getItem('currentDialog')) {
-            const tmp = JSON.parse(localStorage.getItem('currentDialog'))
-            dispatch(dialogsActions.setCurrentDialog(tmp))
-        }
-        if(localStorage.getItem('parentId')) {
-            dispatch(dialogsActions.setPartnerId(Number(localStorage.getItem('parentId'))))
-        }
+        // if(localStorage.getItem('currentDialog')) {
+        //     const tmp = JSON.parse(localStorage.getItem('currentDialog'))
+        //     dispatch(dialogsActions.setCurrentDialog(tmp))
+        // }
+        // if(localStorage.getItem('parentId')) {
+        //     dispatch(dialogsActions.setPartnerId(Number(localStorage.getItem('parentId'))))
+        // }
     }
 
     useEffect(() => {

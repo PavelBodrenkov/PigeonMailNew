@@ -1,8 +1,10 @@
-import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
+import React, { useEffect, useMemo, useState} from 'react';
 import {io} from "socket.io-client";
+import {dialogsActions} from "entities/Dialogs";
+import {useAppDispatch} from "shared/lib/redux/redux";
 
 export default function useChat(roomId:any, user:any, partnerId:any) {
-    console.log('roomId', roomId)
+   const dispatch = useAppDispatch()
 
     const [users, setUsers] = useState([])
     // локальное состояние для списка сообщений
@@ -51,14 +53,14 @@ export default function useChat(roomId:any, user:any, partnerId:any) {
         // обрабатываем получение обновленного списка сообщений
         socket.on('message_list:update', (messages) => {
             setMessages(messages)
+            socket.emit('dialogs:get')
         })
-
     }, [roomId])
 
     // метод для отправки сообщения
     const sendMessage = (message:any) => {
         socket.emit('message:add', message)
     }
-
+    
     return { users, messages, log, sendMessage }
 };

@@ -22,40 +22,55 @@ const test = [
     }
 ]
 
+function useChatScroll<T>(dep: T): React.MutableRefObject<HTMLDivElement> {
+    const ref = React.useRef<HTMLDivElement>();
+    React.useEffect(() => {
+        if (ref.current) {
+            ref.current.scrollTop = ref.current.scrollHeight;
+        }
+    }, [dep]);
+    return ref;
+}
+
 export const ChatListMessage = () => {
     // const {id} = useParams()
     const {user} = useAppSelector(state => state.user)
     const {currentDialog, partnerId} = useAppSelector(state => state.dialogs)
-    const {users, messages, log, sendMessage} = useChat(currentDialog.convid, user, partnerId)
+    const {users, messages, log} = useChat(currentDialog.convid, user, partnerId)
 
     const bottomRef = useRef<any>()
 
     console.log('currentDialog', currentDialog)
 
     useEffect(() => {
-        bottomRef.current.scrollIntoView({
-            behavior: 'smooth'
-        })
+        // bottomRef.current.scrollIntoView({
+        //     behavior: 'smooth'
+        // })
+        if (bottomRef.current) {
+            bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+        }
     }, [messages])
 
     const isMe = useCallback((sender:number) => {
             return user?.id === sender
     }, [user.id])
 
+    console.log('messages', messages)
+
+    const ref = useChatScroll(messages)
 
     return (
-        <div className={cls.ChatListMessage}>
+        <div className={cls.ChatListMessage}  ref={ref}>
             <div className={cls.message_container}>
                 {messages?.map((item:any) => {
                     console.log('isMe', isMe(item.sender))
-
                     return (
                         <div className={classNames(cls.message, {[cls.isMe]: isMe(item.sender)}, [])}>
                             <ChatMessage item={item}  isMe={isMe(item.sender)}/>
                         </div>
                     )
                 })}
-                <p ref={bottomRef} />
+                {/*<p ref={bottomRef} />*/}
             </div>
         </div>
     );
